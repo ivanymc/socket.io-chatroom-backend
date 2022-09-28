@@ -33,7 +33,8 @@ const io = new Server(server, {
   cors: {
     // frontend in port 3000
     origin: process.env.CLIENT_URL,
-    methods: ["GET", "POST", "DELETE"]
+    methods: ["GET", "POST", "DELETE"],
+    credentials: true
   }
 });
 
