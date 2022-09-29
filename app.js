@@ -14,6 +14,11 @@ import { displayAllMsg, saveMsg } from './controllers/messageControllers.js';
 const app = express();
 
 // Middlewares
+app.use( cors({
+    origin: "*",
+    methods: ["GET", "POST"]  
+  })
+);
 app.use(cors());
 app.use(morgan('tiny'));
 app.use(express.urlencoded({ extended: true }));
@@ -26,17 +31,14 @@ mongoose.connect(process.env.DB_URL)
   .then(result => server.listen(8000))
   .catch(err => console.log(err));
 
-
 // Create socket.io
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    // frontend in port 3000
-    origin: '*',
+    origin: "*",
     methods: ["GET", "POST"]
   }
 });
-
 
 // io connect event
 io.on('connection', socket => {
