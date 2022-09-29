@@ -32,9 +32,8 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     // frontend in port 3000
-    origin: process.env.CLIENT_URL,
-    methods: ["GET", "POST", "DELETE"],
-    credentials: true
+    origin: '*',
+    methods: ["GET", "POST"]
   }
 });
 
